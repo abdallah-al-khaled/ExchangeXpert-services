@@ -9,3 +9,7 @@ from transformers import BertTokenizer, BertForSequenceClassification, pipeline
 df = pd.read_csv('nasdaq.csv')
 stock_symbols = set(df['Symbol'].tolist())  # Use a set for fast lookup
 print(stock_symbols)
+
+APCA_API_KEY_ID = os.getenv('APCA_API_KEY_ID')
+APCA_API_SECRET_KEY = os.getenv('APCA_API_SECRET_KEY')
+BASE_URL = "https://paper-api.alpaca.markets"
