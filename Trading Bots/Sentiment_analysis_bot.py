@@ -18,3 +18,4 @@ ws_url = "wss://stream.data.alpaca.markets/v1beta1/news"
 
 finbert = BertForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone', num_labels=3)
 tokenizer = BertTokenizer.from_pretrained('yiyanghkust/finbert-tone')
+nlp = pipeline("sentiment-analysis", model=finbert, tokenizer=tokenizer)
