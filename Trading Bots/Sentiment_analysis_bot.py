@@ -127,3 +127,12 @@ async def handle_message(message):
 
     except Exception as e:
         print(f"Error processing message: {e}")
+        
+async def main():
+    async with websockets.connect(ws_url) as ws:
+        await authenticate_and_subscribe(ws)
+        async for message in ws:
+            await handle_message(message)
+
+if __name__ == "__main__":
+    asyncio.run(main())
