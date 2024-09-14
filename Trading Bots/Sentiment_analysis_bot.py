@@ -13,3 +13,5 @@ print(stock_symbols)
 APCA_API_KEY_ID = os.getenv('APCA_API_KEY_ID')
 APCA_API_SECRET_KEY = os.getenv('APCA_API_SECRET_KEY')
 BASE_URL = "https://paper-api.alpaca.markets"
+
+ws_url = "wss://stream.data.alpaca.markets/v1beta1/news"
