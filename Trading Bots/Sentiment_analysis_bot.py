@@ -40,3 +40,11 @@ def get_current_price(symbol):
     response = requests.get(url, headers=headers)
     data = response.json()
     return data['bars'][symbol]['c']
+
+def submit_bracket_order(symbol, qty, side, take_profit_price, stop_loss_price):
+    url = f"{BASE_URL}/v2/orders"
+    headers = {
+        "APCA-API-KEY-ID": APCA_API_KEY_ID,
+        "APCA-API-SECRET-KEY": APCA_API_SECRET_KEY,
+        "Content-Type": "application/json"
+    }
