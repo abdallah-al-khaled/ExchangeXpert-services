@@ -93,6 +93,22 @@ async def handle_message(message):
             for symbol in matching_symbols:
                 sentiment = analyze_sentiment(news_event['headline'])
                 
+                if sentiment == 2:  
+                    buy_price = get_current_price(symbol)
+                    qty = 5  
+                    
+                    take_profit_price = buy_price * 1.20 
+                    stop_loss_price = buy_price * 0.90 
+
+                    order = submit_bracket_order(
+                        symbol=symbol,
+                        qty=qty,
+                        side='buy',
+                        take_profit_price=take_profit_price,
+                        stop_loss_price=stop_loss_price
+                    )
+                    print(f"Buy order placed with stop-loss and take-profit for {symbol}: {order}")
+
                 
 
     except Exception as e:
