@@ -88,4 +88,12 @@ async def handle_message(message):
         event_symbols = set(news_event['symbols'])
         matching_symbols = event_symbols.intersection(stock_symbols)
         
-        
+        if matching_symbols:
+            print(f"Matching symbols: {matching_symbols}")
+            for symbol in matching_symbols:
+                sentiment = analyze_sentiment(news_event['headline'])
+                
+                
+
+    except Exception as e:
+        print(f"Error processing message: {e}")
