@@ -68,3 +68,12 @@ def submit_bracket_order(symbol, qty, side, take_profit_price, stop_loss_price):
     # Send the POST request to Alpaca API
     response = requests.post(url, headers=headers, json=order_data)
     return response.json()
+
+async def authenticate_and_subscribe(ws):
+    # Authenticate with Alpaca's WebSocket
+    auth_msg = {"action": "auth", "key": APCA_API_KEY_ID, "secret": APCA_API_SECRET_KEY}
+    await ws.send(json.dumps(auth_msg))
+
+    # Subscribe to all news feeds
+    subscribe_msg = {"action": "subscribe", "news": ["*"]}
+    await ws.send(json.dumps(subscribe_msg))
