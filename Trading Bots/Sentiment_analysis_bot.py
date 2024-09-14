@@ -109,7 +109,21 @@ async def handle_message(message):
                     )
                     print(f"Buy order placed with stop-loss and take-profit for {symbol}: {order}")
 
-                
+                elif sentiment == 0:  
+                    sell_price = get_current_price(symbol)
+                    qty = 5  
+                    
+                    take_profit_price = sell_price * 0.80 
+                    stop_loss_price = sell_price * 1.10 
+
+                    order = submit_bracket_order(
+                        symbol=symbol,
+                        qty=qty,
+                        side='sell',
+                        take_profit_price=take_profit_price,
+                        stop_loss_price=stop_loss_price
+                    )
+                    print(f"Sell order placed with stop-loss and take-profit for {symbol}: {order}")
 
     except Exception as e:
         print(f"Error processing message: {e}")
