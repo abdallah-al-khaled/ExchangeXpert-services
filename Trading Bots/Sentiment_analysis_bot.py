@@ -77,3 +77,15 @@ async def authenticate_and_subscribe(ws):
     # Subscribe to all news feeds
     subscribe_msg = {"action": "subscribe", "news": ["*"]}
     await ws.send(json.dumps(subscribe_msg))
+
+
+async def handle_message(message):
+    message_data = json.loads(message)
+    try:
+        news_event = message_data[0]
+        print(f"Message received: {news_event['headline']} ({news_event['symbols']}) ({news_event['content']})")
+        
+        event_symbols = set(news_event['symbols'])
+        matching_symbols = event_symbols.intersection(stock_symbols)
+        
+        
