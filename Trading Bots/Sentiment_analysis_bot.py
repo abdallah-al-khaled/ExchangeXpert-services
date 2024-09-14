@@ -48,3 +48,23 @@ def submit_bracket_order(symbol, qty, side, take_profit_price, stop_loss_price):
         "APCA-API-SECRET-KEY": APCA_API_SECRET_KEY,
         "Content-Type": "application/json"
     }
+    
+    # Define bracket order payload
+    order_data = {
+        "symbol": symbol,
+        "qty": qty,
+        "side": side,  # "buy" or "sell"
+        "type": "market",  
+        "time_in_force": "gtc",  
+        "order_class": "bracket",
+        "take_profit": {
+            "limit_price": take_profit_price 
+        },
+        "stop_loss": {
+            "stop_price": stop_loss_price 
+        }
+    }
+
+    # Send the POST request to Alpaca API
+    response = requests.post(url, headers=headers, json=order_data)
+    return response.json()
