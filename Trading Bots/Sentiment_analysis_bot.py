@@ -29,3 +29,14 @@ def analyze_sentiment(text):
         return 0 
     else:
         return 1
+    
+def get_current_price(symbol):
+    url = f"https://data.alpaca.markets/v2/stocks/bars/latest?symbols={symbol}&feed=iex"
+    headers = {
+        "accept": "application/json",
+        "APCA-API-KEY-ID": APCA_API_KEY_ID,
+        "APCA-API-SECRET-KEY": APCA_API_SECRET_KEY
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()
+    return data['bars'][symbol]['c']
