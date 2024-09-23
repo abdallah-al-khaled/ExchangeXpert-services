@@ -92,3 +92,19 @@ for stock in sp500_table:
             if len(text) > MAX_TOKENS:
                 # If text is too long, use only the description
                 text = description if len(description) <= MAX_TOKENS else description[:MAX_TOKENS]
+                
+            if description and headline:
+                finbert_result = finbert(text)[0]
+                
+                sentiment_score = finbert_result['score']
+                sentiment_label = finbert_result['label']
+                
+                if sentiment_label == 'positive' or sentiment_label == 'negative':
+                    if sentiment_label == 'negative':
+                        sentiment_score = -sentiment_score 
+                    sentiment_scores.append(sentiment_score)
+                
+                print(f"{i+1}. Headline: {headline}")
+                print(f"   Description: {description}")
+                print(f"   Sentiment: {sentiment_label}, Score: {sentiment_score:.4f}")
+                print('-' * 80)
