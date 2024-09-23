@@ -72,3 +72,7 @@ api_url = "http://127.0.0.1:8000/api/sentiment-analysis"
 for stock in sp500_table:
     url = f"https://finance.yahoo.com/quote/{stock}/news?p={stock}"
     response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        news_items = soup.find_all('li', class_='stream-item')
