@@ -64,3 +64,5 @@ if table:
     print(companies)
 else:
     print("Error: Unable to find the table on the webpage.")
+    
+MAX_TOKENS = 512
