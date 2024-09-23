@@ -34,3 +34,5 @@ sp500_dict = dict(zip(sp500_table['Symbol'], sp500_table['Security']))
 import json
 with open('sp500_companies.json', 'w') as f:
     json.dump(sp500_dict, f, indent=4)
+    
+url = 'https://www.slickcharts.com/sp500'
