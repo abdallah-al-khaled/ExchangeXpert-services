@@ -4,6 +4,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 from transformers import pipeline
 import torch
 import pandas as pd
+import json
 
 # Load the FinBERT sentiment analysis model
 tokenizer = BertTokenizer.from_pretrained('ProsusAI/finbert')
