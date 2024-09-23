@@ -38,3 +38,5 @@ with open('sp500_companies.json', 'w') as f:
 url = 'https://www.slickcharts.com/sp500'
 
 response = requests.get(url,headers=headers)
+
+soup = BeautifulSoup(response.content, 'html.parser')
