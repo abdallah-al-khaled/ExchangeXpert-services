@@ -83,3 +83,6 @@ for stock in sp500_table:
         for i, item in enumerate(news_items):    
             headline_tag = item.find('h3')
             headline = headline_tag.get_text().strip() if headline_tag else ''
+            
+            description_tag = item.find('p')
+            description = description_tag.get_text().strip() if description_tag else ''
