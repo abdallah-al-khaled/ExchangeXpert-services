@@ -68,3 +68,7 @@ else:
     
 MAX_TOKENS = 512
 api_url = "http://127.0.0.1:8000/api/sentiment-analysis"
+
+for stock in sp500_table:
+    url = f"https://finance.yahoo.com/quote/{stock}/news?p={stock}"
+    response = requests.get(url, headers=headers)
