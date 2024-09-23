@@ -27,3 +27,5 @@ sp500_table = pd.read_html(url)[0]
 sp500_table['Security'].tolist()
 
 sp500_table = sp500_table[['Symbol', 'Security']]
+
+sp500_dict = dict(zip(sp500_table['Symbol'], sp500_table['Security']))
