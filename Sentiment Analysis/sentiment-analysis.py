@@ -128,3 +128,5 @@ for stock in sp500_table:
                     print("error ",e)
         else:
             print("No sentiment scores to average.")
+    else:
+        print(f"Failed to fetch data for {stock}. Status code: {response.status_code}")
