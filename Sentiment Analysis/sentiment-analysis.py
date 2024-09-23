@@ -42,3 +42,18 @@ response = requests.get(url,headers=headers)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 table = soup.find('tbody')
+
+
+if table:
+    # Dictionary to store company symbol and name
+    companies = {}
+
+    # Iterate through table rows and extract company names and symbols
+    for row in table.find_all('tr')[1:]:  # Skipping the header row
+        columns = row.find_all('td')
+        if len(columns) > 1:
+            symbol = columns[2].get_text(strip=True)  # Get stock symbol
+            name = columns[1].get_text(strip=True)    # Get company name
+            companies[symbol] = name
+
+    
