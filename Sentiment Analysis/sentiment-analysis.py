@@ -59,3 +59,8 @@ if table:
     # Save the company data to a JSON file
     with open('sp500_companies.json', 'w') as json_file:
         json.dump(companies, json_file, indent=4)
+
+    print("JSON file created successfully!")
+    print(companies)
+else:
+    print("Error: Unable to find the table on the webpage.")
