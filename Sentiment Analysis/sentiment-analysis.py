@@ -76,3 +76,10 @@ for stock in sp500_table:
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
         news_items = soup.find_all('li', class_='stream-item')
+        
+        sentiment_scores = []
+        print(f"\nScraped Headlines and Sentiment Scores for {stock}:")
+        
+        for i, item in enumerate(news_items):    
+            headline_tag = item.find('h3')
+            headline = headline_tag.get_text().strip() if headline_tag else ''
