@@ -67,3 +67,4 @@ else:
     print("Error: Unable to find the table on the webpage.")
     
 MAX_TOKENS = 512
+api_url = "http://127.0.0.1:8000/api/sentiment-analysis"
