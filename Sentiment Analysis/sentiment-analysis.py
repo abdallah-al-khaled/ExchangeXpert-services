@@ -108,3 +108,23 @@ for stock in sp500_table:
                 print(f"   Description: {description}")
                 print(f"   Sentiment: {sentiment_label}, Score: {sentiment_score:.4f}")
                 print('-' * 80)
+        if sentiment_scores:
+            average_sentiment = sum(sentiment_scores) / len(sentiment_scores)
+            print(f"Average Sentiment Score for {stock}: {average_sentiment:.4f}")
+            data = {
+                "stock_symbol": stock,
+                "sentiment_score": average_sentiment,  # Example sentiment score
+                "analysis_date": datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Current date and time
+            }
+            response = requests.post(api_url, json=data)
+            if response.status_code == 201:
+                print("Data successfully sent to the API!")
+                print(response.json())  # Print the response from the API
+            else:
+                try:
+                    print(f"Failed to send data. Status code: {response.status_code}")
+                    print(response.json())  # Print the error message
+                except(e) :
+                    print("error ",e)
+        else:
+            print("No sentiment scores to average.")
