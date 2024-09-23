@@ -29,3 +29,7 @@ sp500_table['Security'].tolist()
 sp500_table = sp500_table[['Symbol', 'Security']]
 
 sp500_dict = dict(zip(sp500_table['Symbol'], sp500_table['Security']))
+
+import json
+with open('sp500_companies.json', 'w') as f:
+    json.dump(sp500_dict, f, indent=4)
