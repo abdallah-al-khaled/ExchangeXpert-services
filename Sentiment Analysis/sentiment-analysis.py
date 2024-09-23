@@ -8,3 +8,5 @@ import pandas as pd
 # Load the FinBERT sentiment analysis model
 tokenizer = BertTokenizer.from_pretrained('ProsusAI/finbert')
 model = BertForSequenceClassification.from_pretrained('ProsusAI/finbert')
+
+finbert = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
