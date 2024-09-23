@@ -4,6 +4,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 from transformers import pipeline
 import torch
 import pandas as pd
+from datetime import datetime
 import json
 
 # Load the FinBERT sentiment analysis model
