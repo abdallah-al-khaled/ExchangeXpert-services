@@ -86,3 +86,9 @@ for stock in sp500_table:
             
             description_tag = item.find('p')
             description = description_tag.get_text().strip() if description_tag else ''
+            
+            text = f"{headline} {description}"
+            
+            if len(text) > MAX_TOKENS:
+                # If text is too long, use only the description
+                text = description if len(description) <= MAX_TOKENS else description[:MAX_TOKENS]
