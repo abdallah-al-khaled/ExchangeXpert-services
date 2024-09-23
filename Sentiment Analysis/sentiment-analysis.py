@@ -56,4 +56,6 @@ if table:
             name = columns[1].get_text(strip=True)    # Get company name
             companies[symbol] = name
 
-    
+    # Save the company data to a JSON file
+    with open('sp500_companies.json', 'w') as json_file:
+        json.dump(companies, json_file, indent=4)
