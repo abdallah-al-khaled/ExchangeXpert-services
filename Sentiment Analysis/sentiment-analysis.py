@@ -25,3 +25,5 @@ url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 sp500_table = pd.read_html(url)[0]
 
 sp500_table['Security'].tolist()
+
+sp500_table = sp500_table[['Symbol', 'Security']]
