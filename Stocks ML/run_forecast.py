@@ -41,3 +41,16 @@ def train_prophet(stock_data, stock_name, yearly_seasonality=True, daily_seasona
 
     # Return the forecast for further analysis
     return forecast
+
+# Function to iterate over all stocks and forecast their prices
+def forecast_stocks(symbols, start_date='2015-01-01'):
+    for symbol in symbols:
+        print(f"Processing stock: {symbol}")
+        # Fetch stock data
+        stock_data = fetch_stock_data(symbol, start_date)
+
+        # Train Prophet model
+        forecast = train_prophet(stock_data, symbol)
+
+        # Save the forecast as CSV
+        forecast.to_csv(f'forecast_{symbol}.csv', index=False)
