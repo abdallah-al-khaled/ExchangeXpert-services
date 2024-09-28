@@ -74,10 +74,22 @@ url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 sp500_table = pd.read_html(url)[0]
 
 # Sort by Symbol (or you could sort by Market Cap if you have that data)
-sp500_table = sp500_table.head(500)  # Top 100 based on their order in the table
+sp500_table = sp500_table.head(500)  # Top 500 based on their order in the table
 
 # Extract the list of stock symbols
 sp500_table = sp500_table['Symbol'].tolist()
 
-# Print the list of top 100 stock symbol
-sp500_table
+
+for symbol in sp500_table:
+    try:
+      print(f"Processing stock: {symbol}")
+      # Fetch stock data
+      stock_data = fetch_stock_data(symbol)
+
+      # Train Prophet model
+      forecast = train_prophet(stock_data, symbol)
+
+      # Save the forecast as CSV
+      forecast.to_csv(f'forecast_{symbol}.csv', index=False)
+    except Exception as e:
+      print(f"Error processing stock {symbol}: {e}")
