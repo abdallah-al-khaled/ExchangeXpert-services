@@ -60,3 +60,9 @@ yearly_seasonality = True
 daily_seasonality = False
 holidays = None 
 changepoint_prior_scale = 0.05  
+
+
+# Example usage: Forecast for a single stock to demonstrate
+example_stock = 'AAPL'
+example_data = fetch_stock_data(example_stock)
+example_forecast = train_prophet(example_data, example_stock)
