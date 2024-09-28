@@ -54,3 +54,9 @@ def forecast_stocks(symbols, start_date='2015-01-01'):
 
         # Save the forecast as CSV
         forecast.to_csv(f'forecast_{symbol}.csv', index=False)
+        
+# Customize Prophet parameters (you can tweak them in the notebook)
+yearly_seasonality = True
+daily_seasonality = False
+holidays = None 
+changepoint_prior_scale = 0.05  
