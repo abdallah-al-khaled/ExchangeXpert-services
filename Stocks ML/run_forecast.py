@@ -10,3 +10,11 @@ stock_symbols = [
     'KO', 'PEP', 'MRK', 'INTC', 'T', 'PFE', 'CSCO', 'WMT', 'BA', 'NKE',
     'GS', 'MCD', 'ADBE', 'COST', 'IBM', 'CRM', 'ORCL', 'WFC', 'MDT', 'C',
 ]
+
+# Fetch historical data for a single stock from Yahoo Finance
+def fetch_stock_data(symbol, start_date='2015-01-01'):
+    data = yf.download(symbol, start=start_date)
+    data.reset_index(inplace=True)
+    # Prophet requires columns as 'ds' and 'y'
+    stock_data = data[['Date', 'Close']].rename(columns={'Date': 'ds', 'Close': 'y'})
+    return stock_data
