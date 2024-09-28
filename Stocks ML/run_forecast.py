@@ -66,3 +66,18 @@ changepoint_prior_scale = 0.05
 example_stock = 'AAPL'
 example_data = fetch_stock_data(example_stock)
 example_forecast = train_prophet(example_data, example_stock)
+
+# URL of the Wikipedia page containing the S&P 500 list
+url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
+
+# Scrape the data from the first table on the page
+sp500_table = pd.read_html(url)[0]
+
+# Sort by Symbol (or you could sort by Market Cap if you have that data)
+sp500_table = sp500_table.head(500)  # Top 100 based on their order in the table
+
+# Extract the list of stock symbols
+sp500_table = sp500_table['Symbol'].tolist()
+
+# Print the list of top 100 stock symbol
+sp500_table
